@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+int main()
+{
+    int numbers[10000];
+    int x=0,n=0;
+    string line;
+    ifstream myfile;
+    myfile.open("data10k.txt");
+
+    while (myfile.good()) {
+        getline(myfile, line);
+        stringstream (line) >> x;
+        numbers[n] = x;
+      //  cout << numbers[n] <<endl;
+        n++;
+    }
+    myfile.close();
+
+      for (int i=0; i<10000; i++)
+	{
+		for (int x=0; x<9999; x++)
+		{
+			if(numbers[x]>numbers[x+1])
+			{
+
+				int temp=numbers[x+1];
+
+				numbers[x+1]=numbers[x];
+
+				numbers[x]=temp;
+
+			}
+		}
+	}
+
+
+	for(int i=0; i<10000; i++)
+	{
+		cout << numbers[i] <<endl;
+	}
+
+    return 0;
+}
